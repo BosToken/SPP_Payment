@@ -16,15 +16,8 @@ class check_login
      */
     public function handle($request, Closure $next)
     {
-        // if(Session::get('logged_in') == false) {
-        //     return redirect('/login');
-        // }
-        // else{
-        //     if()
-        // }
-        // return $next($request);
         if(Session::get('logged_in') == false) {
-            return redirect('/login');
+            return redirect('');
         }
         return $next($request);
     }

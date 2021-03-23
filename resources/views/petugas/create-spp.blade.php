@@ -1,26 +1,3 @@
-{{-- @extends('partials.petugas.navbar')
-@section('title', 'DiTagih')
-@section('container')
-
-User : {{$petugas->username}}
-
-<form action="{{url('/create/spp/store')}}" method="POST">
-    {{ csrf_field() }}
-    @method('PUT')
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Nominal</label>
-      <input type="number" name="nominal" id = "nominal"class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Tahun</label>
-        <input type="number" name="tahun" id = "tahun" class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-
-@stop --}}
-
 @extends('partials.petugas.master')
 @section('title', 'SPP Create')
 @section('content')
@@ -63,7 +40,7 @@ User : {{$petugas->username}}
 					<div class="row">
 						<div class="col-md-5"></div>
 						<div class="col-md-4">
-                            <button type="button" class="btn btn-primary center">Export <i class="material-icons"></i></button>
+                            {{-- <button type="button" class="btn btn-primary center"><a class="btn btn-primary" href="{{url('/generate/spp')}}">Export</a><i class="material-icons"></i></button> --}}
 						</div>
 					</div>
 				</div>

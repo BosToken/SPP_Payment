@@ -1,24 +1,3 @@
-{{-- User : {{$petugas->username}}
-
-<form action="{{url('/create/petugas/store')}}" method="POST">
-    {{ csrf_field() }}
-    @method('PUT')
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Username</label>
-      <input type="text" name="username" id = "username"class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Password</label>
-        <input type="password" name="password" id = "password" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nama</label>
-        <input type="text" name="nama_petugas" id = "nama_petugas" class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form> --}}
-
 @extends('partials.petugas.master')
 @section('title', 'Petugas Create')
 @section('content')
@@ -66,7 +45,7 @@
 					<div class="row">
 						<div class="col-md-5"></div>
 						<div class="col-md-4">
-							<button type="button" class="btn btn-primary center">Export</button>
+							{{-- <button type="button" class="btn btn-primary center"><a class="btn btn-primary" href="{{url('/generate/petugas')}}">Export</a></button> --}}
 						</div>
 					</div>
 

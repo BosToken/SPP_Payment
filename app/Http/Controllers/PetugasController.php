@@ -7,6 +7,7 @@ use App\Kelas;
 use App\Pembayaran;
 use App\Siswa;
 use App\Spp;
+use PDF;
 use Illuminate\Http\Request;
 
 class PetugasController extends Controller
@@ -212,5 +213,33 @@ class PetugasController extends Controller
 
         return redirect('create/entri', compact('siswa'));
     }
+
+    public function entridownload(Request $request) {
+        $entri = Pembayaran::all();
+
+        return view('generate.pdf-detail', compact('entri'));
+    }
+
+    public function entrigenerate()
+    {
+        $petugas = Session::get('user');
+        $entri = Pembayaran::all();
+
+        $pdf = PDF::loadView('generate.entri', ['user' => $petugas, 'entri' => $entri ]);
+        return $pdf->download($petugas->username.'_' . date('Y-m-d H:i:s') . 'Konfirmasi.pdf');
+        // return $pdf->stream();
+    }
+
+    public function tagihangenerate()
+    {
+        $petugas = Session::get('user');
+        $entri = Pembayaran::get();
+        $entri->load('siswas', 'petugass');
+
+        $pdf = PDF::loadView('generate.entri', ['user' => $petugas, 'entri' => $entri ]);
+        return $pdf->download($petugas->username.'_' . date('Y-m-d H:i:s') . 'Konfirmasi.pdf');
+    }
+
+    
     
 }

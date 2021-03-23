@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 //Login
-Route::get('login', 'WelcomeController@login');
 Route::get('logout', 'WelcomeController@logout');
 Route::post('login/siswa/check', 'SiswaController@check');
 Route::post('login/petugas/check', 'PetugasController@check');
@@ -65,6 +64,13 @@ Route::group(['middleware' => ['check_login','check_petugas', 'check_admin']], f
     Route::get('create/spp', 'PetugasController@createspp');
     Route::put('create/spp/store', 'PetugasController@storespp');
 
+    //Generate
+    Route::get('generate/entri', 'PetugasController@entrigenerate');
+    Route::get('generate/kelas', 'PetugasController@kelasgenerate');
+    Route::get('generate/petugas', 'PetugasController@petugasgenerate');
+    Route::get('generate/siswa', 'PetugasController@siswagenerate');
+    Route::get('generate/tagihan', 'PetugasController@tagihangenerate');
+    Route::get('generate/spp', 'PetugasController@sppgenerate');
 });
 
 

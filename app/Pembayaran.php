@@ -15,9 +15,12 @@ class Pembayaran extends Model
         'spp_id',
     ];
     public function siswas () {
-        return $this->belongsTo('App\Siswa', 'siswa_id', 'spp_id');
+        return $this->belongsTo('App\Siswa', 'siswa_id');
     }
     public function petugass () {
         return $this->belongsTo('App\Petugas', 'petugas_id');
+    }
+    public function spps () {
+        return $this->belongsTo('App\Spp', 'spp_id');
     }
 }
