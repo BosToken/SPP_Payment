@@ -12,6 +12,6 @@ class Spp extends Model
         'nominal',
     ];
     public function siswas () {
-        return $this->belongsTo('App\Siswa', 'spps_id');
+        return $this->hasMany('App\Siswa', 'siswa_id');
     }
 }

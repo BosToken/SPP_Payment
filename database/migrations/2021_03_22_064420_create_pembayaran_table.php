@@ -17,10 +17,11 @@ class CreatePembayaranTable extends Migration
             $table->BigIncrements('id');
             $table->integer('petugas_id');
             $table->integer('siswa_id');
-            $table->timestamps();
+            $table->dateTime('tgl_bayar');
             $table->string('bulan_dibayar');
             $table->string('tahun_dibayar');
             $table->integer('spp_id');
+            $table->timestamps();
             
         });
     }

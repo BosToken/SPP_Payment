@@ -14,10 +14,10 @@ class Siswa extends Model
         'alamat',
         'no_telp',
     ];
+    public function spps () {
+        return $this->belongsTo('App\Spp', 'spp_id');
+    }
     public function kelass () {
         return $this->belongsTo('App\Kelas', 'kelas_id');
-    }
-    public function spps () {
-        return $this->hasMany('App\Spp', 'spp_id');
     }
 }

@@ -6,22 +6,34 @@
 
 <title>@yield('title')</title>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" style = "font-family:arial black;" href="https://github.com/BosToken/SPP_Payment"><h3>SPPayment</h3></a>
+      <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/')}}"><h5>Home</h5></a>
+            <a class="nav-link active" aria-current="page" href="{{url('/create/siswa')}}">CRUD SISWA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/login')}}"><h5>Login</h5></a>
+            <a class="nav-link active" aria-current="page" href="{{url('/create/petugas')}}">CRUD Petugas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/faq')}}"><h5>FAQ</h5></a>
+            <a class="nav-link active" aria-current="page" href="{{url('/create/kelas')}}">CRUD Kelas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/create/spp')}}">CRUD SPP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/create/siswaspp')}}">Daftarkan SPP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/create/entri')}}">Entri Transaksi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/logout')}}">LogOut</a>
           </li>
         </ul>
       </div>

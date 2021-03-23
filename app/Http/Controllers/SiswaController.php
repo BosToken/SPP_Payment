@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Siswa;
+use Session;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -10,16 +11,18 @@ class SiswaController extends Controller
         $data = Siswa::where('nama',$request->nama)->where('id',$request->id)->first();
         if($data) {
             $request->session()->put('logged_in', true);
+            $request->session()->put('user', $data);
             return redirect('/siswa/dashboard');
         }
            else {
             return redirect('/login');
         }
-        // $email = $req->email;
-        // $pwd   = $req->password;
-        // if (Auth::attempt(['email' => $email, 'password' => $pwd])) {
-        //     return "Hai ". Auth::user()->name;
-        // }else{
-        //     return "Maaf email atau password yang anda masukan tidak sesuai.";
     }
+
+    public function dashboard () {
+        $siswa = Session::get('user');
+        return view('siswa.dashboard', compact('siswa'));
+        // return $siswa;
+    }
+
 }
