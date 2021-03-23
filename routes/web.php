@@ -22,33 +22,54 @@ Route::post('login/siswa/check', 'SiswaController@check');
 Route::post('login/petugas/check', 'PetugasController@check');
 
 //Siswa
-Route::get('siswa/dashboard', 'SiswaController@dashboard');
-
-Route::get('create/siswa', 'PetugasController@createsiswa');
-Route::put('create/siswa/store', 'PetugasController@storesiswa');
-
-Route::get('create/siswaspp', 'PetugasController@createsiswaspp');
-Route::get('create/siswaspp/spp/{id}', 'PetugasController@getsiswaspp');
-Route::put('update/siswa/spp/{id}', 'PetugasController@updatesiswaspp');
+Route::group(['middleware' => ['check_login']], function () {
+    Route::get('siswa/dashboard', 'SiswaController@dashboard');
+    Route::get('siswa/history', 'SiswaController@history');
+    Route::get('siswa/profile', 'SiswaController@profile');
+});
 
 //Petugas
-Route::get('petugas/dashboard', 'PetugasController@dashboard');
+Route::group(['middleware' => ['check_login','check_petugas']], function () {
 
-Route::get('create/petugas', 'PetugasController@createpetugas');
-Route::put('create/petugas/store', 'PetugasController@storepetugas');
+    //Petugas
+    Route::get('petugas/dashboard', 'PetugasController@dashboard');
 
-//Kelas
-Route::get('create/kelas', 'PetugasController@createkelas');
-Route::put('create/kelas/store', 'PetugasController@storekelas');
+    //Tagihan
+    Route::get('create/siswaspp', 'PetugasController@createsiswaspp');
+    Route::get('create/siswaspp/spp/{id}', 'PetugasController@getsiswaspp');
+    Route::put('update/siswa/spp/{id}', 'PetugasController@updatesiswaspp');
 
-//SPP
-Route::get('create/spp', 'PetugasController@createspp');
-Route::put('create/spp/store', 'PetugasController@storespp');
+    //Pembayaran
+    Route::get('create/entri', 'PetugasController@createentri');
+    Route::get('create/entri/siswa/{id}', 'PetugasController@getsiswaentrik');
+    Route::put('create/entri/store/{id}', 'PetugasController@storeentri');
 
-//Pembayaran
-Route::get('create/entri', 'PetugasController@createentri');
-Route::get('create/entri/siswa/{id}', 'PetugasController@getsiswaentrik');
-Route::put('create/entri/store/{id}', 'PetugasController@storeentri');
+});
+
+//Admin
+Route::group(['middleware' => ['check_login','check_petugas', 'check_admin']], function () {
+
+    //Siswa
+    Route::get('create/siswa', 'PetugasController@createsiswa');
+    Route::put('create/siswa/store', 'PetugasController@storesiswa');
+
+    //Petugas
+    Route::get('create/petugas', 'PetugasController@createpetugas');
+    Route::put('create/petugas/store', 'PetugasController@storepetugas');
+
+    //Kelas
+    Route::get('create/kelas', 'PetugasController@createkelas');
+    Route::put('create/kelas/store', 'PetugasController@storekelas');
+
+    //SPP
+    Route::get('create/spp', 'PetugasController@createspp');
+    Route::put('create/spp/store', 'PetugasController@storespp');
+
+});
+
+
+
+
 
 
 

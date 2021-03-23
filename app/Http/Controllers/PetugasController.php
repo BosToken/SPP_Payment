@@ -31,14 +31,17 @@ class PetugasController extends Controller
     }
 
     public function createsiswa () {
+        $siswa = Siswa::all();
+        $siswa->load('kelass');
         $petugas = Session::get('user');
         $kelas = Kelas::all();
-        return view('petugas.create-siswa', compact('petugas', 'kelas'));
+        return view('petugas.create-siswa', compact('petugas', 'kelas', 'siswa'));
     }
 
     public function createsiswaspp () {
         $petugas = Session::get('user');
-        $siswa = Siswa::all();
+        // $siswa = Siswa::all();
+        $siswa = Siswa::where('spp_id', '1')->get();
         $siswa->load('kelass');
 
         $spp = Spp::all();
@@ -47,17 +50,21 @@ class PetugasController extends Controller
 
     public function createpetugas () {
         $petugas = Session::get('user');
-        return view('petugas.create-petugas', compact('petugas'));
+        $all = Petugas::all();
+
+        return view('petugas.create-petugas', compact('petugas', 'all'));
     }
 
     public function createkelas () {
+        $kelas = Kelas::all();
         $petugas = Session::get('user');
-        return view('petugas.create-kelas', compact('petugas'));
+        return view('petugas.create-kelas', compact('petugas', 'kelas'));
     }
 
     public function createspp () {
+        $spp = Spp::all();
         $petugas = Session::get('user');
-        return view('petugas.create-spp', compact('petugas'));
+        return view('petugas.create-spp', compact('petugas', 'spp'));
     }
 
     public function createentri () {
@@ -65,6 +72,7 @@ class PetugasController extends Controller
         $petugas = Session::get('user');
         // $siswa = Siswa::with('spps')->get();
         $siswa = Siswa::all();
+        // $siswa = Siswa::where('spp_id','1')->get();
         $siswa->load('kelass', 'spps');
         // $siswa = Siswa::join('siswa', 'siswa.spp_id', 'spps.id')->get();
 
@@ -115,7 +123,7 @@ class PetugasController extends Controller
 
             $siswa->save();
 
-            return redirect('/petugas/dashboard');
+            return redirect('/create/siswa');
         }
     }
 
@@ -137,7 +145,7 @@ class PetugasController extends Controller
         $data->nama_petugas = $nama_petugas;
         $data->level = '2';
         $data->save();
-        return redirect('/petugas/dashboard');
+        return redirect('/create/petugas');
         }
     }
 
@@ -150,7 +158,7 @@ class PetugasController extends Controller
         $data->nama_kelas = $nama_kelas;
         $data->kompetensi_keahlian = $kompetensi_keahlian;
         $data->save();
-        return redirect('/petugas/dashboard');
+        return redirect('/create/kelas');
     }
 
     public function storespp(Request $request)
@@ -162,7 +170,7 @@ class PetugasController extends Controller
         $data->nominal = $nominal;
         $data->tahun = $tahun;
         $data->save();
-        return redirect('/petugas/dashboard');
+        return redirect('/create/spp');
     }
 
     public function storeentri (Request $request, $id) {
@@ -177,7 +185,7 @@ class PetugasController extends Controller
         $data->siswa_id = $siswa_id;
         $data->spp_id = $spp_id;
         $data->petugas_id = $petugas_id;
-        $data->tgl_bayar = '2021-03-08 00:00:00';
+        $data->tgl_bayar = date('Y-m-d H:i:s');
         $data->bulan_dibayar = $bulan_dibayar;
         $data->tahun_dibayar = $tahun_dibayar;
         $data->save();
@@ -186,7 +194,7 @@ class PetugasController extends Controller
             'spp_id' => 1,
         ]);
 
-        return redirect('/petugas/dashboard');
+        return redirect('/create/siswaspp');
     }
 
     public function updatesiswaspp (Request $request, $id) {

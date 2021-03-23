@@ -20,4 +20,7 @@ class Siswa extends Model
     public function kelass () {
         return $this->belongsTo('App\Kelas', 'kelas_id');
     }
+    public function pembayarans () {
+        return $this->hasMany('App\Pembayaran');
+    }
 }

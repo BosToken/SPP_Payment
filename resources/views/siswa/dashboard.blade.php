@@ -4,6 +4,8 @@
 
 NISN : {{$siswa->id}}
 Nama : {{$siswa->nama}}
+<br>
+Tagihan : {{$siswa->spps->nominal}}
     
 {{-- @endforeach --}}
 
